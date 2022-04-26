@@ -14,10 +14,22 @@ const { NotImplementedError } = require('../extensions/index.js');
  * calculateHanoi(9, 4308) => { turns: 511, seconds: 427 }
  *
  */
-function calculateHanoi(/* disksNumber, turnsSpeed */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function calculateHanoi(disksNumber, turnsSpeed) {
+  const calculate = {
+    turns: 0,
+    seconds: 0
+  }
+  //Отсюда методом математической индукции заключаем, что минимальное число ходов,
+  // необходимое для решения головоломки, равно 2( в степени N) − 1, где N — число дисков.
+  //calculate.turns =  2** disksNumber - 1;
+  calculate.turns =  2** disksNumber-1;
+
+  //turnsSpeed` — скорость перемещения дисков (в **ходах** в **час**).
+  calculate.seconds = Math.trunc(calculate.turns / turnsSpeed * 3600);
+
+  return calculate;
 }
+
 
 module.exports = {
   calculateHanoi
